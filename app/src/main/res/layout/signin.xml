@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignIn">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/border3"
+        android:text="Sign In Form"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:paddingHorizontal="5dp"/>
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border3"
+        android:minHeight="48dp"
+        android:hint="Username"
+        android:inputType="text"
+        android:paddingHorizontal="5dp"
+        />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userName"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border3"
+        android:minHeight="48dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingHorizontal="5dp"
+        />
+
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="SIGN IN" />
+
+
+</RelativeLayout>

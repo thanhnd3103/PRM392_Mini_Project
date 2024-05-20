@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.prm392_mini_project"
+    namespace = "com.example.minigame"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.prm392_mini_project"
-        minSdk = 24
+        applicationId = "com.example.minigame"
+        minSdk = 27
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

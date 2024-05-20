@@ -1,19 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:id="@+id/money_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+        <TextView
+            android:id="@+id/money_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:text="Money: "
+            android:textSize="20dp"
+            android:padding="10dp"/>
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:textSize="20dp"
+            android:hint="test"
+            android:padding="10dp"/>
+    </LinearLayout>
     <TextView
+        android:id="@+id/winnerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/money_layout"
+        android:visibility="invisible" />
+<LinearLayout
+    android:id="@+id/horse1_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="20dp"
+    android:layout_below="@+id/winnerTextView">
+
+    <SeekBar
+        android:layout_margin="10dp"
+        android:id="@+id/horse1"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:thumb="@drawable/horse"
+        android:max="100"/>
+    <EditText
+        android:id="@+id/horse1_check"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:hint="100"
+        android:inputType="numberDecimal"
+        />
+    <TextView
+        android:id="@+id/horse1_rate"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="100"
+        android:textColor="#FF0000"
+        />
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/horse2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/horse1_layout">
+
+        <SeekBar
+            android:layout_margin="10dp"
+            android:id="@+id/horse2"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:thumb="@drawable/horse2"
+            android:max="100"/>
+        <EditText
+            android:id="@+id/horse2_check"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:hint="100"
+            />
+        <TextView
+            android:id="@+id/horse2_rate"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="100"
+            android:textColor="#FF0000"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/horse3_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/horse2_layout">
+
+        <SeekBar
+            android:layout_margin="10dp"
+            android:id="@+id/horse3"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:thumb="@drawable/horse3"
+            android:max="100"/>
+        <EditText
+            android:id="@+id/horse3_check"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:hint="100"
+            />
+        <TextView
+            android:id="@+id/horse3_rate"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="100"
+            android:textColor="#FF0000"/>
+    </LinearLayout>
+
+
+    <!-- Start Button -->
+    <Button
+        android:layout_below="@+id/horse3_layout"
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Start Race"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_centerInParent="true" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:layout_below="@+id/startButton"
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add 100$"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

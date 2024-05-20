@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PRM392_Mini_Project"
+rootProject.name = "MiniGame"
 include(":app")
  

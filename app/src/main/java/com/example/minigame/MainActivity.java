@@ -3,14 +3,19 @@ package com.example.minigame;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import java.util.Locale;
 import java.util.Random;
@@ -165,6 +170,22 @@ public class MainActivity extends AppCompatActivity {
         rate1.setText(String.format(Locale.ENGLISH, "%.2f", (random.nextDouble() * (max - min) + min)));
         rate2.setText(String.format(Locale.ENGLISH, "%.2f", (random.nextDouble() * (max - min) + min)));
         rate3.setText(String.format(Locale.ENGLISH, "%.2f", (random.nextDouble() * (max - min) + min)));
+    }
+
+    public void showOddsHelp(View view) {
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_help_odds, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        AppCompatButton btnOk = popupView.findViewById(R.id.btnOk);
+        btnOk.setOnClickListener(v -> popupWindow.dismiss());
     }
 }
 

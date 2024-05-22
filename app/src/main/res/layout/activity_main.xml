@@ -34,6 +34,7 @@
             android:textSize="20dp"
             android:hint="test"
             android:padding="10dp"/>
+
     </LinearLayout>
     <TextView
         android:id="@+id/winnerTextView"
@@ -45,40 +46,71 @@
         android:layout_marginTop="20dp"
         android:layout_below="@id/money_layout"
         android:visibility="invisible" />
-<LinearLayout
-    android:id="@+id/horse1_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginTop="20dp"
-    android:layout_below="@+id/winnerTextView">
 
-    <SeekBar
-        android:layout_margin="10dp"
-        android:id="@+id/horse1"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:thumb="@drawable/horse"
-        android:max="100"/>
-    <EditText
-        android:id="@+id/horse1_check"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:hint="100"
-        android:inputType="numberDecimal"
-        />
     <TextView
-        android:id="@+id/horse1_rate"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:text="100"
-        android:textColor="#FF0000"
-        />
-</LinearLayout>
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="95dp"
+        android:text="Amount" />
+    <TextView
+        android:id="@+id/tvOdds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="50dp"
+        android:text="Odds" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="30dp"
+        android:padding="0dp"
+        android:text="?"
+        android:onClick="showOddsHelp" />
+
+    <LinearLayout
+        android:id="@+id/horse1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/winnerTextView"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <SeekBar
+            android:id="@+id/horse1"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:max="100"
+            android:thumb="@drawable/horse" />
+
+        <EditText
+            android:id="@+id/horse1_check"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:hint="0"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/horse1_rate"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="100"
+            android:textColor="#FF0000" />
+
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/horse2_layout"
         android:layout_width="match_parent"
@@ -101,7 +133,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:inputType="numberDecimal"
-            android:hint="100"
+            android:hint="0"
             />
         <TextView
             android:id="@+id/horse2_rate"
@@ -135,7 +167,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:inputType="numberDecimal"
-            android:hint="100"
+            android:hint="0"
             />
         <TextView
             android:id="@+id/horse3_rate"

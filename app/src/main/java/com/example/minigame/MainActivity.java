@@ -136,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
         if (!isRacing) {
             return;
         }
-        double result = 0;
 
         isRacing = false;
         startButton.setEnabled(true);
@@ -147,22 +146,29 @@ public class MainActivity extends AppCompatActivity {
         if (winningHorse != horse2) animator2.pause();
         if (winningHorse != horse3) animator3.pause();
 
-        String winner = "";
+        double gain;
+
+        double finalMoney;
+        String winner;
         if (winningHorse == horse1) {
-            result = Double.parseDouble(money.getText().toString()) + cash1 * Double.parseDouble(rate1.getText().toString()) + cash1;
+            gain = cash1 * Double.parseDouble(rate1.getText().toString()) + cash1;
+            finalMoney = Double.parseDouble(money.getText().toString()) + gain;
             winner = "Horse 1";
         } else if (winningHorse == horse2) {
-            result = Double.parseDouble(money.getText().toString()) + cash2 * Double.parseDouble(rate2.getText().toString()) + cash2;
+            gain = cash2 * Double.parseDouble(rate2.getText().toString()) + cash2;
+            finalMoney = Double.parseDouble(money.getText().toString()) + gain;
             winner = "Horse 2";
-        } else if (winningHorse == horse3) {
-            result = Double.parseDouble(money.getText().toString()) + cash3 * Double.parseDouble(rate3.getText().toString()) + cash3;
+        } else {
+            gain = cash3 * Double.parseDouble(rate3.getText().toString()) + cash3;
+            finalMoney = Double.parseDouble(money.getText().toString()) + gain;
             winner = "Horse 3";
         }
         randomizeRates(1, 2);
-        money.setText(String.valueOf(result));
+        money.setText(String.valueOf(finalMoney));
         winnerText.setText(winner + " wins!");
         winnerText.setVisibility(View.VISIBLE);
-        Toast.makeText(MainActivity.this, winner + " wins!", Toast.LENGTH_SHORT).show();
+        double netGain = gain - (cash1 + cash2 + cash3);
+        showRoundResult(netGain, winner);
     }
 
     private void randomizeRates(double min, double max) {
@@ -183,6 +189,32 @@ public class MainActivity extends AppCompatActivity {
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        AppCompatButton btnOk = popupView.findViewById(R.id.btnOk);
+        btnOk.setOnClickListener(v -> popupWindow.dismiss());
+    }
+
+    public void showRoundResult(double netGain, String winner) {
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_result, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        popupWindow.showAtLocation(this.getCurrentFocus(), Gravity.CENTER, 0, 0);
+
+        TextView tvWinner = popupView.findViewById(R.id.tvWinner);
+        tvWinner.setText(winner + " wins!");
+
+        TextView tvMoney = popupView.findViewById(R.id.tvMoney);
+        if (netGain < 0) {
+            tvMoney.setText("You have lost $" + -netGain + " this round");
+        } else {
+            tvMoney.setText("You have won $" + netGain + " this round");
+        }
 
         AppCompatButton btnOk = popupView.findViewById(R.id.btnOk);
         btnOk.setOnClickListener(v -> popupWindow.dismiss());

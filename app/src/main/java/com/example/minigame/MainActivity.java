@@ -61,9 +61,7 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(this::startRace);
         addButton.setOnClickListener(v -> {
             if (!isRacing) {
-                double cash = Double.parseDouble(money.getText().toString());
-                cash += 100;
-                money.setText(String.valueOf(cash));
+                money.setText(String.valueOf(getMoney() + 100));
             }
         });
     }
@@ -78,19 +76,20 @@ public class MainActivity extends AppCompatActivity {
         cash3 = TextUtils.isEmpty(text3.getText().toString()) ?
                 0 :
                 Double.parseDouble(text3.getText().toString());
+        double betTotal = cash1 + cash2 + cash3;
 
-        if (cash1 + cash2 + cash3 > Double.parseDouble(money.getText().toString())){
+        if (betTotal > getMoney()){
             winnerText.setText("Not enough money!");
             winnerText.setVisibility(View.VISIBLE);
             Toast.makeText(MainActivity.this, " Not enough money!", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (cash1 == 0 && cash2 == 0 && cash3 == 0) {
+        } else if (betTotal == 0) {
             winnerText.setText("You must choose at least 1 horse!");
             winnerText.setVisibility(View.VISIBLE);
             Toast.makeText(MainActivity.this, "You must choose at least 1 horse!", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-            money.setText(String.valueOf(Double.parseDouble(money.getText().toString()) - (cash1 + cash2 + cash3)));
+            money.setText(String.valueOf(getMoney() - betTotal));
             return true;
         }
     }
@@ -147,28 +146,32 @@ public class MainActivity extends AppCompatActivity {
         if (winningHorse != horse3) animator3.pause();
 
         double gain;
-
         double finalMoney;
         String winner;
         if (winningHorse == horse1) {
             gain = cash1 * Double.parseDouble(rate1.getText().toString()) + cash1;
-            finalMoney = Double.parseDouble(money.getText().toString()) + gain;
+            finalMoney = getMoney() + gain;
             winner = "Horse 1";
         } else if (winningHorse == horse2) {
             gain = cash2 * Double.parseDouble(rate2.getText().toString()) + cash2;
-            finalMoney = Double.parseDouble(money.getText().toString()) + gain;
+            finalMoney = getMoney() + gain;
             winner = "Horse 2";
         } else {
             gain = cash3 * Double.parseDouble(rate3.getText().toString()) + cash3;
-            finalMoney = Double.parseDouble(money.getText().toString()) + gain;
+            finalMoney = getMoney() + gain;
             winner = "Horse 3";
         }
         randomizeRates(1, 2);
         money.setText(String.valueOf(finalMoney));
         winnerText.setText(winner + " wins!");
         winnerText.setVisibility(View.VISIBLE);
+
         double netGain = gain - (cash1 + cash2 + cash3);
         showRoundResult(netGain, winner);
+    }
+
+    private double getMoney() {
+        return Double.parseDouble(money.getText().toString());
     }
 
     private void randomizeRates(double min, double max) {
